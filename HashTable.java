@@ -3,19 +3,23 @@ import java.io.*;
 
 public class HashTable {
 
-    String[] table = new String[100];
+    ArrayList<String>[] table = new ArrayList[100];
     String key = "hello";
-    int hashCode = key.hashCode();
-    int arrayIndex = Math.abs(hashCode) % 100;
     
     public void put(String key) {
-
+        int i = Math.abs(key.hashCode() % 100);
+        table[i].add(key);
     }
+
     public String get(String key) {
         return null;
     }
+
     public String remove(String key){
-        return null;
+        int i = key.hashCode();
+        for(int count = 0; count < table[i].size(); count++) {
+            
+        }
     }
     public Iterator keys() {
         return null;
