@@ -4,22 +4,33 @@ import java.io.*;
 public class HashTable {
 
     ArrayList<String>[] table = new ArrayList[100];
-    String key = "hello";
     
     public void put(String key) {
         int i = Math.abs(key.hashCode() % 100);
+        if(table[i] == null) { 
+            table[i] = new ArrayList<>();
+        }
         table[i].add(key);
+        System.out.println("Added: " + key);
     }
 
     public String get(String key) {
-        return null;
+        return key;
     }
 
     public String remove(String key){
-        int i = key.hashCode();
+        int i = Math.abs(key.hashCode() % 100);
+        
         for(int count = 0; count < table[i].size(); count++) {
-            
+            if(table[i].get(count).matches( key )) {
+                String removed = table[i].get(count);
+                table[i].remove(count);
+                System.out.println("Removed: " + removed);
+                return(removed);
+            }
         }
+        System.out.println(key + " not found");
+        return null;
     }
     public Iterator keys() {
         return null;
